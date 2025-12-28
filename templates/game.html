@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Bermain - Tebak Angka{% endblock %}
+
+{% block content %}
+<div class="game-container">
+    <div class="header">
+        <h1>🎯 Tebak Angka</h1>
+        <p>Tebak angka antara 1 - {{ session.max_number }}</p>
+    </div>
+    
+    <div class="attempts-info">
+        <p>Kesempatan: <strong>{{ session.max_attempts - session.attempts }}</strong> / {{ session.max_attempts }}</p>
+    </div>
+    
+    {% if error %}
+    <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('guess') }}" class="guess-form">
+        <input type="number" name="guess" min="1" max="{{ session.max_number }}" 
+               placeholder="Masukkan tebakanmu..." required autofocus>
+        <button type="submit" class="btn btn-primary">Tebak!</button>
+    </form>
+    
+    {% if guesses %}
+    <div class="guesses-history">
+        <h3>Riwayat Tebakan:</h3>
+        <ul>
+            {% for g in guesses|reverse %}
+            <li>
+                <span class="guess-number">{{ g.number }}</span>
+                <span class="guess-hint">{{ g.hint }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    <div class="game-actions">
+        <a href="{{ url_for('reset') }}" class="btn btn-secondary">Keluar</a>
+    </div>
+</div>
+{% endblock %}

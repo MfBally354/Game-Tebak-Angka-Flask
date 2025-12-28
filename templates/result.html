@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Hasil - Tebak Angka{% endblock %}
+
+{% block content %}
+<div class="result-container">
+    {% if won %}
+    <div class="result-win">
+        <h1>🎉 SELAMAT!</h1>
+        <p class="result-message">Kamu berhasil menebak angkanya!</p>
+        <div class="result-detail">
+            <p>Angka rahasia: <strong>{{ secret }}</strong></p>
+            <p>Jumlah tebakan: <strong>{{ attempts }}</strong></p>
+        </div>
+    </div>
+    {% else %}
+    <div class="result-lose">
+        <h1>😢 GAME OVER</h1>
+        <p class="result-message">Kesempatanmu habis!</p>
+        <div class="result-detail">
+            <p>Angka rahasianya adalah: <strong>{{ secret }}</strong></p>
+            <p>Total tebakan: <strong>{{ attempts }}</strong></p>
+        </div>
+    </div>
+    {% endif %}
+    
+    <div class="result-actions">
+        <a href="{{ url_for('reset') }}" class="btn btn-primary">Main Lagi</a>
+    </div>
+</div>
+{% endblock %}

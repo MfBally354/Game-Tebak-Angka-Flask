@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Tebak Angka - Pilih Level{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>🎮 Tebak Angka Game</h1>
+    <p>Pilih tingkat kesulitan untuk memulai!</p>
+</div>
+
+<div class="modes">
+    <div class="mode-card">
+        <h2>😊 MUDAH</h2>
+        <p>Tebak angka 1-10</p>
+        <p>5 kesempatan</p>
+        <a href="{{ url_for('game', mode='easy') }}" class="btn btn-easy">Mulai</a>
+    </div>
+    
+    <div class="mode-card">
+        <h2>😎 SEDANG</h2>
+        <p>Tebak angka 1-50</p>
+        <p>7 kesempatan</p>
+        <a href="{{ url_for('game', mode='medium') }}" class="btn btn-medium">Mulai</a>
+    </div>
+    
+    <div class="mode-card">
+        <h2>🔥 SULIT</h2>
+        <p>Tebak angka 1-100</p>
+        <p>10 kesempatan</p>
+        <a href="{{ url_for('game', mode='hard') }}" class="btn btn-hard">Mulai</a>
+    </div>
+</div>
+{% endblock %}
